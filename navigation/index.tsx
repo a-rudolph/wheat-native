@@ -13,6 +13,8 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
+import { SvgUri } from "react-native-svg";
+import Logo from "../assets/svgs/Logo";
 import { Text, View } from "../components/Themed";
 import { BRAND_NAME } from "../constants/brand";
 
@@ -116,14 +118,7 @@ function BottomTabNavigator() {
                 {BRAND_NAME}
               </Text>
               <Pressable onPress={() => props.navigation.navigate("TabOne")}>
-                <View
-                  style={{
-                    backgroundColor: Colors.dark.wheaty,
-                    height: 24,
-                    width: 24,
-                    borderRadius: 12,
-                  }}
-                ></View>
+                <Logo />
               </Pressable>
             </Row>
           );
