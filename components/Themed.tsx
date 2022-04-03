@@ -37,6 +37,16 @@ export function Text(props: TextProps) {
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
+
+export function Card(props: ViewProps) {
+  const { style, ...otherProps } = props;
+  const scheme = useColorScheme()
+  
+  const backgroundColor = Colors[scheme].gradient
+
+  return <DefaultView style={[{ backgroundColor, padding: 16, borderRadius: 8, borderWidth: 1, borderColor: 'rgba(72, 79, 85, 0.2)' }, style]} {...otherProps} />;
+}
+
 export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
