@@ -4,7 +4,7 @@
  */
 
 import { Text as DefaultText, View as DefaultView } from "react-native";
-
+import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 
@@ -42,25 +42,34 @@ export function Text(props: TextProps) {
 }
 
 export function Card(props: ViewProps) {
-  const { style, ...otherProps } = props;
+  const { style, children, ...otherProps } = props;
   const scheme = useColorScheme();
-
-  const backgroundColor = Colors[scheme].gradient;
+  const from = useThemeColor({}, "primary_2");
+  const to = useThemeColor({}, "primary");
 
   return (
     <DefaultView
       style={[
         {
-          backgroundColor,
-          padding: 16,
           borderRadius: 8,
-          borderWidth: 1,
           borderColor: "rgba(72, 79, 85, 0.2)",
+          borderWidth: 1,
         },
         style,
       ]}
       {...otherProps}
-    />
+    >
+      <LinearGradient
+        style={{
+          borderRadius: 8,
+          padding: 16,
+        }}
+        locations={[0, 0.6]}
+        colors={[from, to]}
+      >
+        {children}
+      </LinearGradient>
+    </DefaultView>
   );
 }
 
