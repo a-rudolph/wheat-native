@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
@@ -13,7 +13,6 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
-import { SvgUri } from "react-native-svg";
 import Logo from "../assets/svgs/Logo";
 import { Text, View } from "../components/Themed";
 import { BRAND_NAME } from "../constants/brand";
@@ -96,14 +95,24 @@ const Row = ({ children }: React.PropsWithChildren<{}>) => {
   );
 };
 
-function BottomTabNavigator() {
+function BottomTabNavigator(props: any) {
   const colorScheme = useColorScheme();
+
+  const colors = Colors[colorScheme];
 
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{
         title: BRAND_NAME,
+        tabBarStyle: {
+          height: 64,
+          backgroundColor: Colors[colorScheme].primary,
+          borderColor: colors.primary_2,
+          borderTopWidth: 2,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
         tabBarActiveTintColor: Colors[colorScheme].wheaty,
         header: (props) => {
           return (
@@ -129,16 +138,18 @@ function BottomTabNavigator() {
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Recipes",
+          tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,
         })}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Settings",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="setting" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -149,8 +160,8 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: React.ComponentProps<typeof AntDesign>["name"];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <AntDesign size={30} style={{ marginBottom: -3 }} {...props} />;
 }
