@@ -21,7 +21,7 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import TabOneScreen from "../screens/TabOneScreen";
+import BuilderScreen from "../screens/BuilderScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import {
   RootStackParamList,
@@ -136,7 +136,7 @@ function BottomTabNavigator(props: any) {
     >
       <BottomTab.Screen
         name="TabOne"
-        component={TabOneScreen}
+        component={BuilderScreen}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           title: "Recipes",
           tabBarIcon: ({ color }) => <TabBarIcon name="bars" color={color} />,

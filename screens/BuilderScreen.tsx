@@ -1,11 +1,6 @@
-import { loadOptions } from "@babel/core";
-import { useMemo } from "react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
-
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Card, Text, View } from "../components/Themed";
-import Colors from "../constants/Colors";
 import { RootTabScreenProps } from "../types";
 
 enum Btr {
@@ -13,9 +8,7 @@ enum Btr {
   SAMEDAYER = "samedayer",
 }
 
-export default function TabOneScreen({
-  navigation,
-}: RootTabScreenProps<"TabOne">) {
+const BuilderScreen = ({ navigation }: RootTabScreenProps<"TabOne">) => {
   const [selectedBtr, setBtr] = useState<Btr>(Btr.SAMEDAYER);
 
   const options = [
@@ -88,7 +81,7 @@ export default function TabOneScreen({
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -112,3 +105,5 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+
+export default BuilderScreen;
