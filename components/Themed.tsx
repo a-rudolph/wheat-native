@@ -1,8 +1,3 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
-
 import { Text as DefaultText, View as DefaultView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../constants/Colors";
@@ -43,33 +38,27 @@ export function Text(props: TextProps) {
 
 export function Card(props: ViewProps) {
   const { style, children, ...otherProps } = props;
-  const scheme = useColorScheme();
-  const from = useThemeColor({}, "primary_2");
-  const to = useThemeColor({}, "primary");
+  const grad_1 = useThemeColor({}, "grad_1");
+  const grad_2 = useThemeColor({}, "grad_2");
+  const grad_3 = useThemeColor({}, "grad_3");
 
   return (
-    <DefaultView
+    <LinearGradient
       style={[
         {
           borderRadius: 8,
           borderColor: "rgba(72, 79, 85, 0.2)",
           borderWidth: 1,
+          padding: 16,
         },
         style,
       ]}
+      locations={[0, 0.2, 0.8]}
+      colors={[grad_1, grad_2, grad_3]}
       {...otherProps}
     >
-      <LinearGradient
-        style={{
-          borderRadius: 8,
-          padding: 16,
-        }}
-        locations={[0, 0.6]}
-        colors={[from, to]}
-      >
-        {children}
-      </LinearGradient>
-    </DefaultView>
+      {children}
+    </LinearGradient>
   );
 }
 
