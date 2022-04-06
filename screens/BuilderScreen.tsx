@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
+import RecipeCard from "../components/RecipeCard";
 import { Card, Text, View } from "../components/Themed";
 import { recipes } from "../constants/recipes";
 import { RootTabScreenProps } from "../types";
@@ -36,8 +37,8 @@ const BuilderScreen = ({ navigation }: RootTabScreenProps<"TabOne">) => {
           const isSelected = btf === selectedBtf;
           const cardStyle = isSelected
             ? {
-                borderColor: "#F6BB6366",
-              }
+              borderColor: "#F6BB6366",
+            }
             : {};
 
           return (
@@ -59,13 +60,7 @@ const BuilderScreen = ({ navigation }: RootTabScreenProps<"TabOne">) => {
       />
       {filtered.map((recipe) => {
         return (
-          <View style={styles.row} key={recipe.key}>
-            <Card style={styles.col}>
-              <Text color="wheaty" style={styles.title}>
-                {recipe.name}
-              </Text>
-            </Card>
-          </View>
+          <RecipeCard key={recipe.key} recipe={recipe} />
         );
       })}
     </View>
@@ -77,13 +72,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  button: {},
   row: {
     padding: 8,
     flexDirection: "row",
     display: "flex",
   },
   col: { flex: 1, margin: 8 },
-  button: {},
   title: {
     fontWeight: "600",
     fontSize: 16,

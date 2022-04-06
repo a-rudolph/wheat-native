@@ -1,4 +1,4 @@
-type RecipeType = {
+export type RecipeType = {
   name: string;
   key: string;
   bulk: number;
