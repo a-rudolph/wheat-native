@@ -63,10 +63,10 @@ export function Card(props: ViewProps) {
 }
 
 export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
+  const { style, color, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
-    "background"
+    color || "background"
   );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
